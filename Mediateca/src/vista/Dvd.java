@@ -1,11 +1,16 @@
 package vista;
 
+import modelo.DvdMetodos;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Dvd extends JFrame {
+
+    modelo.Dvd d = new modelo.Dvd();
+    DvdMetodos dm = new DvdMetodos();
     private JTextField textField1;
     private JTextField textField2;
     private JTextField textField3;
@@ -18,11 +23,9 @@ public class Dvd extends JFrame {
         setTitle("Gestión de DVDs");
         //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // Crear un JPanel para organizar los componentes
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(0, 2, 10, 10)); // GridLayout de 2 columnas, sin límite de filas
 
-        // Componentes para la entrada de datos
         JLabel label1 = new JLabel("Título:");
         textField1 = new JTextField(20);
 
@@ -35,22 +38,21 @@ public class Dvd extends JFrame {
         JLabel label4 = new JLabel("Genero:");
         textField4 = new JTextField(20);
 
-        // Botones de acción
         agregarButton = new JButton("Agregar");
         editarButton = new JButton("Editar");
         eliminarButton = new JButton("Eliminar");
 
-        // Agregar ActionListener a cada botón
         agregarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                agregar();
             }
         });
 
         editarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                editar();
 
             }
         });
@@ -62,7 +64,6 @@ public class Dvd extends JFrame {
             }
         });
 
-        // Agregar componentes al panel
         panel.add(label1);
         panel.add(textField1);
 
@@ -79,11 +80,37 @@ public class Dvd extends JFrame {
         panel.add(editarButton);
         panel.add(eliminarButton);
 
-        // Establecer el panel como contenido del JFrame
         getContentPane().add(panel, BorderLayout.CENTER);
 
-        pack(); // Ajustar el tamaño del JFrame automáticamente
-        setLocationRelativeTo(null); // Centrar la ventana en la pantalla
-        setVisible(true); // Hacer visible la ventana
+        pack();
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
+
+    public void agregar(){
+        String titulo = textField1.getText();
+        String director = textField2.getText();
+        String duracion = textField3.getText();
+        String genero = textField4.getText();
+
+        d.setTitulo(titulo);
+        d.setDirector(director);
+        d.setDuracion(duracion);
+        d.setGenero(genero);
+        dm.Agregar(d);
+    }
+
+    public void editar(){
+        String titulo = textField1.getText();
+        String director = textField2.getText();
+        String duracion = textField3.getText();
+        String genero = textField4.getText();
+
+        d.setTitulo(titulo);
+        d.setDirector(director);
+        d.setDuracion(duracion);
+        d.setGenero(genero);
+        dm.Editar(d);
+
     }
 }

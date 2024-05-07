@@ -1,5 +1,7 @@
 package vista;
 
+import modelo.CdMetodos;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -7,6 +9,9 @@ import java.awt.event.ActionListener;
 
 
 public class Cd extends JFrame {
+
+    modelo.Cd c = new modelo.Cd();
+    CdMetodos cm = new CdMetodos();
     private JTextField textField1;
     private JTextField textField2;
     private JTextField textField3;
@@ -20,11 +25,9 @@ public class Cd extends JFrame {
         setTitle("Gestión de CDs");
         //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // Crear un JPanel para organizar los componentes
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(0, 2, 10, 10)); // GridLayout de 2 columnas, sin límite de filas
 
-        // Componentes para la entrada de datos
         JLabel label1 = new JLabel("Título:");
         textField1 = new JTextField(20);
 
@@ -40,23 +43,21 @@ public class Cd extends JFrame {
         JLabel label5 = new JLabel("Numero de canciones:");
         textField5 = new JTextField(20);
 
-        // Botones de acción
         button1 = new JButton("Agregar");
         button2 = new JButton("Editar");
         button3 = new JButton("Eliminar");
 
-        // Agregar ActionListener a cada botón
         button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                agregar();
             }
         });
 
         button2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                editar();
             }
         });
 
@@ -67,7 +68,6 @@ public class Cd extends JFrame {
             }
         });
 
-        // Agregar componentes al panel
         panel.add(label1);
         panel.add(textField1);
 
@@ -87,12 +87,43 @@ public class Cd extends JFrame {
         panel.add(button2);
         panel.add(button3);
 
-        // Establecer el panel como contenido del JFrame
         getContentPane().add(panel, BorderLayout.CENTER);
 
-        pack(); // Ajustar el tamaño del JFrame automáticamente
-        setLocationRelativeTo(null); // Centrar la ventana en la pantalla
-        setVisible(true); // Hacer visible la ventana
+        pack();
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
+
+    public void agregar(){
+        String titulo = textField1.getText();
+        String artista = textField2.getText();
+        String genero = textField3.getText();
+        String duracion = textField4.getText();
+        String numerocanciones = textField5.getText();
+
+        c.setTitulo(titulo);
+        c.setArtista(artista);
+        c.setGenero(genero);
+        c.setDuracion(duracion);
+        c.setNumeroCanciones(numerocanciones);
+        cm.Agregar(c);
+
+    }
+
+    public void editar(){
+        String titulo = textField1.getText();
+        String artista = textField2.getText();
+        String genero = textField3.getText();
+        String duracion = textField4.getText();
+        String numerocanciones = textField5.getText();
+
+        c.setTitulo(titulo);
+        c.setArtista(artista);
+        c.setGenero(genero);
+        c.setDuracion(duracion);
+        c.setNumeroCanciones(numerocanciones);
+        cm.Editar(c);
+
     }
 
 }

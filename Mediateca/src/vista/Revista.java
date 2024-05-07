@@ -1,5 +1,7 @@
 package vista;
 
+import modelo.RevistaMetodos;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -7,6 +9,9 @@ import java.awt.event.ActionListener;
 
 
 public class Revista extends JFrame {
+
+    modelo.Revista rm = new modelo.Revista();
+    RevistaMetodos rm1 = new RevistaMetodos();
     private JTextField textField1;
     private JTextField textField2;
     private JTextField textField3;
@@ -19,11 +24,9 @@ public class Revista extends JFrame {
         setTitle("Gestión de Revistas");
         //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // Crear un JPanel para organizar los componentes
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(0, 2, 10, 10)); // GridLayout de 2 columnas, sin límite de filas
 
-        // Componentes para la entrada de datos
         JLabel label1 = new JLabel("Título:");
         textField1 = new JTextField(20);
 
@@ -36,23 +39,21 @@ public class Revista extends JFrame {
         JLabel label4 = new JLabel("Año:");
         textField4 = new JTextField(20);
 
-        // Botones de acción
         agregarButton = new JButton("Agregar");
         editarButton = new JButton("Editar");
         eliminarButton = new JButton("Eliminar");
 
-        // Agregar ActionListener a cada botón
         agregarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                agregar();
             }
         });
 
         editarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                editar();
             }
         });
 
@@ -63,7 +64,6 @@ public class Revista extends JFrame {
             }
         });
 
-        // Agregar componentes al panel
         panel.add(label1);
         panel.add(textField1);
 
@@ -80,11 +80,60 @@ public class Revista extends JFrame {
         panel.add(editarButton);
         panel.add(eliminarButton);
 
-        // Establecer el panel como contenido del JFrame
         getContentPane().add(panel, BorderLayout.CENTER);
 
-        pack(); // Ajustar el tamaño del JFrame automáticamente
-        setLocationRelativeTo(null); // Centrar la ventana en la pantalla
-        setVisible(true); // Hacer visible la ventana
+        pack();
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
+
+    public void agregar(){
+        String titulo = textField1.getText();
+        String editorial = textField2.getText();
+        String periodicidad = textField3.getText();
+        String anio = textField4.getText();
+
+        rm.setTitulo(titulo);
+        rm.setEditorial(editorial);
+        rm.setPerioicidad(periodicidad);
+        rm.setFechaPublicacion(anio);
+        rm1.Agregar(rm);
+    }
+
+    public void editar(){
+        String titulo = textField1.getText();
+        String editorial = textField2.getText();
+        String periodicidad = textField3.getText();
+        String anio = textField4.getText();
+
+        rm.setTitulo(titulo);
+        rm.setEditorial(editorial);
+        rm.setPerioicidad(periodicidad);
+        rm.setFechaPublicacion(anio);
+        rm1.Editar(rm);
+
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
