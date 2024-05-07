@@ -1,4 +1,6 @@
 package vista;
 
-public class Libros {
+import javax.swing.*;
+
+public class Libros extends JFrame {
 }

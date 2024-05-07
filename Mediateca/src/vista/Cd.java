@@ -1,4 +1,6 @@
 package vista;
 
-public class Cd {
+import javax.swing.*;
+
+public class Cd extends JFrame {
 }

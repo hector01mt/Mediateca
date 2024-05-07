@@ -1,4 +1,6 @@
 package vista;
 
-public class Revista {
+import javax.swing.*;
+
+public class Revista extends JFrame {
 }
