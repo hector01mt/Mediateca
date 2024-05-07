@@ -12,7 +12,7 @@ public class VistaPrincipal extends JFrame {
 
     public VistaPrincipal() {
 
-        setTitle("Mi Aplicación");
+        setTitle("Mediateca");
         setSize(400, 300); // Establecer el tamaño de la ventana
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Cerrar la aplicación al cerrar la ventana
         setLocationRelativeTo(null); // Centrar la ventana en la pantalla
